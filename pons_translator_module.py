@@ -32,4 +32,7 @@ def get_translation(word):
 
 
 def get_simple_translation(word):
-    return get_translation(word)[1][1]
+    try:
+        return get_translation(word)[1][1]
+    except IndexError:
+        return ""
