@@ -10,11 +10,6 @@
 import bs4
 import requests
 
-# from googletrans import Translator
-# translator=Translator()
-# while True:
-# translated=translator.translate( 'palavra' ,src='de',dest='en')
-# print(translated.text)
 import pyperclip
 
 # pyperclip.paste() /.copy
@@ -34,32 +29,7 @@ from selenium.webdriver.support.ui import (
 )  # for implicit and explict waits
 from selenium.webdriver.chrome.options import Options  # for suppressing the browser
 
-# substituicao google translate
-# def traduzir(palavra_traduzir):
-#     option = webdriver.ChromeOptions()
-#     option.add_argument('headless')
-#     url_traducao = 'https://translate.google.com/?sl=de&tl=en&text=' + str(palavra_traduzir) + '&op=translate'
-#     driver = webdriver.Chrome('C:\Program Files (x86)\chromedriver.exe',options=option)
-#     driver.get(url_traducao)
-#     command = "document.getElementById('source').value = '" + palavra_traduzir + "'"
-#     driver.execute_script(command)
-#     time.sleep(3)
-#     output1 = driver.find_element_by_xpath( '/html/body/div[2]/div[2]/div[1]/div[2]/div[1]/div[1]/div[2]/div[3]/div[1]/div[2]/div/span[1]').text
-#     return output1
-
-# substituição langenscheidt
-def traduzir(palavra_traduzir):
-    url2 = "https://dict.leo.org/german-english/" + palavra_traduzir + "side=right"
-    headers = {
-        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36"
-    }
-    res2 = requests.get(url2, headers=headers)
-    res2.raise_for_status()
-
-    soup2 = bs4.BeautifulSoup(res.text, "html.parser")
-    en_element = soup2.find_all("div", class_="isRelinked")
-    return en_element[0]
-
+from pons_translator_module import get_simple_translation
 
 # detect control C
 while True:
@@ -126,14 +96,11 @@ while True:
             g = g + 1
             print("Trocando a frase")
         elif keyboard.is_pressed("ctrl+t"):
-            traducao = traduzir(palavra_original)
+            traducao = get_simple_translation(palavra_original)
             time.sleep(0.1)
             pyperclip.copy(traducao)
             time.sleep(0.1)
-            # print(traducao.text)
             pyautogui.write(" " + traducao)
-            time.sleep(0.1)
-            # keyboard.press_and_release('ctrl+v')
             time.sleep(1)
             print("Voltando ao loop principal")
             f = 1
