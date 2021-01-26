@@ -42,6 +42,18 @@ while True:
             time.sleep(0.3)
             palavra_original = pyperclip.paste()
             break
+        elif keyboard.is_pressed("ctrl+p"):
+            time.sleep(0.3)
+            print("Contexter pausado!")
+            while True:
+                if keyboard.is_pressed("ctrl+p"):
+                    time.sleep(0.3)
+                    print("Contexter despausado!")
+                    break
+                elif keyboard.is_pressed("ctrl+alt+s"):
+                    time.sleep(0.2)
+                    pyperclip.copy("ß")
+                    pyautogui.hotkey("ctrl", "v")
 
     # open page and get phrase
     url = "https://context.reverso.net/translation/german-english/" + palavra_original
