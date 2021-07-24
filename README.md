@@ -1,4 +1,4 @@
-Contexter
+De Contexter
 ======
 
-Gets a phrase in context based on a given word
+Gets a german phrase in context based on a given word
