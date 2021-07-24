@@ -107,6 +107,7 @@ while True:
                 g = 0
             g = g + 1
             print("Trocando a frase")
+
         elif keyboard.is_pressed("ctrl+t"):
             traducao = get_simple_translation(palavra_original)
             time.sleep(0.1)
@@ -120,3 +121,8 @@ while True:
             time.sleep(1)
             print("Voltando ao loop principal")
             f = 1
+
+        if keyboard.is_pressed("ctrl+alt+s"):
+            time.sleep(0.2)
+            pyperclip.copy("ß")
+            pyautogui.hotkey("ctrl", "v")
